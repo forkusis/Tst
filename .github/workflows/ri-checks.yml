@@ -1,0 +1,33 @@
+name: Rotation Intelligence checks
+on:
+  push:
+    branches: [rotation-intelligence-v1]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  core-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Test analytical core
+        run: node test-core.cjs
+      - name: Validate catalogue and data
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const c=JSON.parse(fs.readFileSync('tickers.json','utf8'));
+          const h=JSON.parse(fs.readFileSync('history.json','utf8'));
+          const symbols=Object.keys(c.tickers);
+          if(symbols.length!==59) throw new Error('Expected 59 catalog symbols, got '+symbols.length);
+          for(const g of c.groups) for(const t of g.instruments) if(!c.tickers[t]) throw new Error('Unknown ticker '+t);
+          const ungrouped=symbols.filter(t=>c.tickers[t].role!=='benchmark'&&!c.groups.some(g=>g.instruments.includes(t)));
+          if(ungrouped.length) throw new Error('Ungrouped instruments: '+ungrouped.join(', '));
+          const overlap=c.groups.flatMap(g=>g.instruments).filter((t,i,a)=>a.indexOf(t)!==i);
+          if(overlap.length) throw new Error('Duplicate group membership: '+overlap.join(', '));
+          if(!h.tickers) throw new Error('history.json missing tickers object');
+          console.log('OK catalogue:',symbols.length,'symbols;',c.groups.length,'groups; history tickers:',Object.keys(h.tickers).length);
+          NODE
