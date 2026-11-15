@@ -20,8 +20,15 @@ jobs:
           node --check app.js
           node --check core.js
           node --check fetch.mjs
+          node --check dev-server.mjs
+          node --check build-standalone.mjs
+          node --check check-app.mjs
       - name: Test analytical core
         run: node test-core.cjs
+      - name: Smoke test application and standalone build
+        run: |
+          node check-app.mjs
+          node build-standalone.mjs
       - name: Validate catalogue and data
         run: |
           node - <<'NODE'
