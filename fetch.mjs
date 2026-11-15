@@ -126,12 +126,21 @@ function toWeekly(daily) {
   const byWeek = new Map();
   for (const row of daily) {
     const dt = new Date(row[0] + 'T00:00:00Z');
-    // ISO nedelja: ponedeljak kao početak
     const day = (dt.getUTCDay() + 6) % 7;
     const monday = new Date(dt.getTime() - day * 86400000).toISOString().slice(0, 10);
-    byWeek.set(monday, row); // kasniji dan u istoj nedelji pregazi raniji
+    const current = byWeek.get(monday);
+    if (!current) {
+      byWeek.set(monday, { last: row, volume: Number(row[2] || 0), high: row[3], low: row[4] });
+    } else {
+      current.last = row;
+      current.volume += Number(row[2] || 0);
+      if (Number.isFinite(row[3])) current.high = current.high == null ? row[3] : Math.max(current.high, row[3]);
+      if (Number.isFinite(row[4])) current.low = current.low == null ? row[4] : Math.min(current.low, row[4]);
+    }
   }
-  return [...byWeek.values()].map((r) => [r[0], r[1], r[2]]);
+  return [...byWeek.values()].map((w) => [
+    w.last[0], w.last[1], w.volume, w.high, w.low, w.last[5] ?? null,
+  ]);
 }
 
 async function main() {
@@ -178,7 +187,7 @@ async function main() {
     schema: 'history-v2',
     mode: 'history-v2',
     format:
-      'd:[date,adjclose,volume,high_raw,low_raw,close_raw] w:[date,adjclose,volume] — p[0],p[1] kompatibilno',
+      'd:[date,adjclose,volume,high_raw,low_raw,close_raw] w:[date,adjclose,volume,high_raw,low_raw,close_raw]',
     return_type: 'adjusted (total-return)',
     price_types: { adjclose: stats.adjclose },
     count: Object.keys(out).length,
