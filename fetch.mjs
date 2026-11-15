@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
  * Preuzima sveže dnevne podatke sa Yahoo Finance (chart v8) i pravi history.json
- * koji aplikacija u app/index.html direktno čita.
+ * koji aplikacija u root-u repozitorijuma direktno čita.
  *
  * Upotreba:
- *   node scripts/fetch.mjs                     # podrazumevano: 3 godine, app/history.json
- *   node scripts/fetch.mjs --range 5y --out /tmp/h.json
- *   node scripts/fetch.mjs --only SPY,XLE
+ *   node fetch.mjs                     # podrazumevano: 5 godina, history.json
+ *   node fetch.mjs --range 5y --out /tmp/h.json
+ *   node fetch.mjs --only SPY,XLE
  *
  * Bez ijedne spoljne biblioteke. Radi na Node 18+ (globalni fetch).
  * Ako jedan ticker padne, ostali se i dalje preuzimaju; na kraju se ispiše lista padova.
@@ -17,8 +17,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
 
 const UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
@@ -31,9 +30,9 @@ function arg(name, def) {
   return i > -1 && process.argv[i + 1] ? process.argv[i + 1] : def;
 }
 
-const RANGE = arg('range', '3y');
-const OUT = path.resolve(arg('out', path.join(ROOT, 'app', 'history.json')));
-const CATALOG = path.resolve(arg('catalog', path.join(ROOT, 'catalog', 'tickers.json')));
+const RANGE = arg('range', '5y');
+const OUT = path.resolve(arg('out', path.join(ROOT, 'history.json')));
+const CATALOG = path.resolve(arg('catalog', path.join(ROOT, 'tickers.json')));
 const ONLY = arg('only', '').split(',').map((s) => s.trim().toUpperCase()).filter(Boolean);
 const DELAY_MS = Number(arg('delay', '350'));
 const MAX_RETRY = Number(arg('retry', '4'));
@@ -89,15 +88,17 @@ async function fetchTicker(t) {
       const off = Number(r.meta?.gmtoffset || 0);
       const d = [];
       for (let i = 0; i < r.timestamp.length; i++) {
-        const close = adj[i] ?? q.close?.[i];
+        const rawClose = q.close?.[i];
+        const close = adj[i] ?? rawClose;
         if (!Number.isFinite(close) || close <= 0) continue;
         const date = new Date((r.timestamp[i] + off) * 1000).toISOString().slice(0, 10);
         d.push([
           date,
           round(close),
           Number.isFinite(q.volume?.[i]) ? Math.round(q.volume[i]) : 0,
-          round(q.high?.[i] ?? close),
-          round(q.low?.[i] ?? close),
+          round(q.high?.[i] ?? rawClose ?? close),
+          round(q.low?.[i] ?? rawClose ?? close),
+          round(rawClose),
         ]);
       }
       // ako je zadnja sveća današnja a berza još radi → izbaci je (nedovršen dan)
@@ -125,12 +126,21 @@ function toWeekly(daily) {
   const byWeek = new Map();
   for (const row of daily) {
     const dt = new Date(row[0] + 'T00:00:00Z');
-    // ISO nedelja: ponedeljak kao početak
     const day = (dt.getUTCDay() + 6) % 7;
     const monday = new Date(dt.getTime() - day * 86400000).toISOString().slice(0, 10);
-    byWeek.set(monday, row); // kasniji dan u istoj nedelji pregazi raniji
+    const current = byWeek.get(monday);
+    if (!current) {
+      byWeek.set(monday, { last: row, volume: Number(row[2] || 0), high: row[3], low: row[4] });
+    } else {
+      current.last = row;
+      current.volume += Number(row[2] || 0);
+      if (Number.isFinite(row[3])) current.high = current.high == null ? row[3] : Math.max(current.high, row[3]);
+      if (Number.isFinite(row[4])) current.low = current.low == null ? row[4] : Math.min(current.low, row[4]);
+    }
   }
-  return [...byWeek.values()].map((r) => [r[0], r[1], r[2]]);
+  return [...byWeek.values()].map((w) => [
+    w.last[0], w.last[1], w.volume, w.high, w.low, w.last[5] ?? null,
+  ]);
 }
 
 async function main() {
@@ -177,7 +187,7 @@ async function main() {
     schema: 'history-v2',
     mode: 'history-v2',
     format:
-      'd:[date,adjclose,volume,high_adj,low_adj] w:[date,adjclose,volume] — p[0],p[1] kompatibilno sa starom app',
+      'd:[date,adjclose,volume,high_raw,low_raw,close_raw] w:[date,adjclose,volume,high_raw,low_raw,close_raw]',
     return_type: 'adjusted (total-return)',
     price_types: { adjclose: stats.adjclose },
     count: Object.keys(out).length,
@@ -190,7 +200,8 @@ async function main() {
     took_sec: Math.round((Date.now() - t0) / 1000),
   };
 
-  const payload = { meta, tickers: out, rooms: cat.rooms || [] };
+  meta.raw_ohlc = 'Yahoo raw High/Low/Close; adjusted Close za return/RR';
+  const payload = { meta, tickers: out, groups: cat.groups || [] };
   await fs.mkdir(path.dirname(OUT), { recursive: true });
   await fs.writeFile(OUT, JSON.stringify(payload));
 

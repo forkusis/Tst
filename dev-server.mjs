@@ -19,7 +19,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
-const APP = path.join(ROOT, 'app');
+const APP = ROOT;
 const PORT = Number(process.env.PORT || 8088);
 
 const MIME = {
@@ -38,7 +38,7 @@ function runFetch() {
   if (refreshing) return refreshing;
   refreshing = new Promise((resolve) => {
     const t0 = Date.now();
-    const p = spawn(process.execPath, [path.join(ROOT, 'scripts', 'fetch.mjs'), '--range', '3y'], {
+    const p = spawn(process.execPath, [path.join(ROOT, 'fetch.mjs'), '--range', '5y'], {
       cwd: ROOT,
       stdio: ['ignore', 'ignore', 'pipe'],
     });
@@ -51,7 +51,7 @@ function runFetch() {
       refreshing = null;
       let latestD = null;
       try {
-        const j = JSON.parse(await fs.readFile(path.join(APP, 'history.json'), 'utf8'));
+        const j = JSON.parse(await fs.readFile(path.join(ROOT, 'history.json'), 'utf8'));
         latestD = j?.meta?.latestD || null;
       } catch {}
       resolve({

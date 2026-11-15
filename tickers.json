@@ -1,389 +1,668 @@
 {
- "rooms": [
-  {
-   "id": "sectors",
-   "name": "US Sektori",
-   "bench": "SPY",
-   "list": [
-    "XLE",
-    "XLB",
-    "XLI",
-    "XLY",
-    "XLP",
-    "XLV",
-    "XLF",
-    "XLK",
-    "XLC",
-    "XLU",
-    "XLRE"
-   ]
-  },
-  {
-   "id": "style",
-   "name": "Stil/Faktori",
-   "bench": "RSP",
-   "list": [
-    "MTUM",
-    "QUAL",
-    "USMV",
-    "AVUV",
-    "VBR",
-    "IWM",
-    "VUG",
-    "VTV",
-    "SCHD"
-   ]
-  },
-  {
-   "id": "safety",
-   "name": "Sigurnost+Realna",
-   "bench": "BIL",
-   "list": [
-    "TLT",
-    "IEF",
-    "SHY",
-    "LQD",
-    "HYG",
-    "TIP",
-    "GLD",
-    "DBC",
-    "UUP",
-    "GDX"
-   ]
-  },
-  {
-   "id": "world",
-   "name": "Svet",
-   "bench": "VT",
-   "list": [
-    "EFA",
-    "EEM",
-    "FXI",
-    "EWJ",
-    "INDA",
-    "EWZ",
-    "EWG",
-    "IEMG"
-   ]
-  },
-  {
-   "id": "tech",
-   "name": "Sateliti",
-   "bench": "QQQ",
-   "list": [
-    "SMH",
-    "SOXX",
-    "IGV",
-    "XBI",
-    "IBB",
-    "XPH",
-    "CIBR",
-    "BOTZ",
-    "ROBO",
-    "ITA",
-    "PAVE",
-    "ICLN",
-    "SKYY",
-    "WCLD",
-    "XOP"
-   ]
+  "version": 1,
+  "groups": [
+    {
+      "id": "sectors",
+      "name": "Američki sektori",
+      "benchmark": "SPY",
+      "instruments": [
+        "XLE",
+        "XLB",
+        "XLI",
+        "XLY",
+        "XLP",
+        "XLV",
+        "XLF",
+        "XLK",
+        "XLC",
+        "XLU",
+        "XLRE"
+      ]
+    },
+    {
+      "id": "styles",
+      "name": "Stilovi i faktori",
+      "benchmark": "SPY",
+      "instruments": [
+        "MTUM",
+        "QUAL",
+        "USMV",
+        "VUG",
+        "VTV",
+        "SCHD"
+      ]
+    },
+    {
+      "id": "smallcaps",
+      "name": "Male kompanije",
+      "benchmark": "SPY",
+      "instruments": [
+        "AVUV",
+        "VBR",
+        "IWM"
+      ]
+    },
+    {
+      "id": "world",
+      "name": "Međunarodna tržišta",
+      "benchmark": "VT",
+      "instruments": [
+        "EFA",
+        "EEM",
+        "FXI",
+        "EWJ",
+        "INDA",
+        "EWZ",
+        "EWG",
+        "IEMG"
+      ]
+    },
+    {
+      "id": "themes",
+      "name": "Tematske i industrijske akcije",
+      "benchmark": "QQQ",
+      "instruments": [
+        "SMH",
+        "SOXX",
+        "IGV",
+        "XBI",
+        "IBB",
+        "XPH",
+        "CIBR",
+        "BOTZ",
+        "ROBO",
+        "ITA",
+        "PAVE",
+        "ICLN",
+        "SKYY",
+        "WCLD",
+        "XOP"
+      ]
+    },
+    {
+      "id": "bonds",
+      "name": "Obveznice i kredit",
+      "benchmark": "AGG",
+      "instruments": [
+        "TLT",
+        "IEF",
+        "SHY",
+        "LQD",
+        "HYG",
+        "TIP"
+      ]
+    },
+    {
+      "id": "commodities",
+      "name": "Zlato i roba",
+      "benchmark": "SPY",
+      "instruments": [
+        "GLD",
+        "DBC"
+      ]
+    },
+    {
+      "id": "miners",
+      "name": "Rudarske kompanije",
+      "benchmark": "GLD",
+      "instruments": [
+        "GDX"
+      ]
+    },
+    {
+      "id": "currency",
+      "name": "Valute",
+      "benchmark": "SPY",
+      "instruments": [
+        "UUP"
+      ]
+    },
+    {
+      "id": "cash",
+      "name": "Gotovina i kratkoročni zapisi",
+      "benchmark": "SPY",
+      "instruments": [
+        "BIL"
+      ]
+    }
+  ],
+  "benchmarks": [
+    "SPY",
+    "RSP",
+    "QQQ",
+    "VT",
+    "AGG",
+    "BIL"
+  ],
+  "tickers": {
+    "SPY": {
+      "name": "S&P 500",
+      "role": "benchmark",
+      "group": "benchmark",
+      "description": "Široko američko tržište"
+    },
+    "RSP": {
+      "name": "S&P 500 jednako ponderisan",
+      "role": "benchmark",
+      "group": "benchmark",
+      "description": "Širina američkog tržišta"
+    },
+    "QQQ": {
+      "name": "Nasdaq-100",
+      "role": "benchmark",
+      "group": "benchmark",
+      "description": "Velike nefinansijske Nasdaq kompanije"
+    },
+    "VT": {
+      "name": "Globalno tržište akcija",
+      "role": "benchmark",
+      "group": "benchmark",
+      "description": "Široko svetsko tržište akcija"
+    },
+    "AGG": {
+      "name": "Široko tržište obveznica",
+      "role": "benchmark",
+      "group": "benchmark",
+      "description": "Američke obveznice investicionog kvaliteta"
+    },
+    "BIL": {
+      "name": "Trezorski zapisi 1–3 meseca",
+      "role": "asset",
+      "group": "cash",
+      "benchmark": "SPY",
+      "alternatives": [
+        "AGG"
+      ],
+      "description": "Gotovinski proxy"
+    },
+    "XLE": {
+      "name": "Energetika",
+      "group": "sectors",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "XLB": {
+      "name": "Materijali",
+      "group": "sectors",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "XLI": {
+      "name": "Industrija",
+      "group": "sectors",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "XLY": {
+      "name": "Diskreciona potrošnja",
+      "group": "sectors",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "XLP": {
+      "name": "Osnovna potrošnja",
+      "group": "sectors",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "XLV": {
+      "name": "Zdravstvo",
+      "group": "sectors",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "XLF": {
+      "name": "Finansije",
+      "group": "sectors",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "XLK": {
+      "name": "Informacione tehnologije",
+      "group": "sectors",
+      "benchmark": "SPY",
+      "alternatives": [
+        "QQQ"
+      ]
+    },
+    "XLC": {
+      "name": "Komunikacione usluge",
+      "group": "sectors",
+      "benchmark": "SPY",
+      "alternatives": [
+        "QQQ"
+      ]
+    },
+    "XLU": {
+      "name": "Komunalne usluge",
+      "group": "sectors",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "XLRE": {
+      "name": "Nekretnine",
+      "group": "sectors",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "MTUM": {
+      "name": "Momentum faktor",
+      "group": "styles",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "QUAL": {
+      "name": "Kvalitet",
+      "group": "styles",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "USMV": {
+      "name": "Minimalna volatilnost",
+      "group": "styles",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "VUG": {
+      "name": "Growth",
+      "group": "styles",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "VTV": {
+      "name": "Value",
+      "group": "styles",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "SCHD": {
+      "name": "Dividendna strategija",
+      "group": "styles",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "AVUV": {
+      "name": "Small-cap value",
+      "group": "smallcaps",
+      "benchmark": "IWM",
+      "alternatives": [
+        "SPY",
+        "VBR"
+      ],
+      "overlap": [
+        "VBR"
+      ]
+    },
+    "VBR": {
+      "name": "Small-cap value",
+      "group": "smallcaps",
+      "benchmark": "IWM",
+      "alternatives": [
+        "SPY",
+        "AVUV"
+      ],
+      "overlap": [
+        "AVUV"
+      ]
+    },
+    "IWM": {
+      "name": "Američke male kompanije",
+      "group": "smallcaps",
+      "benchmark": "SPY",
+      "alternatives": [
+        "RSP"
+      ]
+    },
+    "EFA": {
+      "name": "Razvijena tržišta van SAD",
+      "group": "world",
+      "benchmark": "VT",
+      "alternatives": [
+        "SPY"
+      ]
+    },
+    "EEM": {
+      "name": "Tržišta u razvoju",
+      "group": "world",
+      "benchmark": "VT",
+      "alternatives": [
+        "IEMG",
+        "EFA"
+      ],
+      "overlap": [
+        "IEMG"
+      ]
+    },
+    "FXI": {
+      "name": "Kina – velike kompanije",
+      "group": "world",
+      "benchmark": "EEM",
+      "alternatives": [
+        "VT"
+      ]
+    },
+    "EWJ": {
+      "name": "Japan",
+      "group": "world",
+      "benchmark": "EFA",
+      "alternatives": [
+        "VT"
+      ]
+    },
+    "INDA": {
+      "name": "Indija",
+      "group": "world",
+      "benchmark": "EEM",
+      "alternatives": [
+        "VT"
+      ]
+    },
+    "EWZ": {
+      "name": "Brazil",
+      "group": "world",
+      "benchmark": "EEM",
+      "alternatives": [
+        "VT"
+      ]
+    },
+    "EWG": {
+      "name": "Nemačka",
+      "group": "world",
+      "benchmark": "EFA",
+      "alternatives": [
+        "VT"
+      ]
+    },
+    "IEMG": {
+      "name": "Tržišta u razvoju – širi obuhvat",
+      "group": "world",
+      "benchmark": "VT",
+      "alternatives": [
+        "EEM"
+      ],
+      "overlap": [
+        "EEM"
+      ]
+    },
+    "SMH": {
+      "name": "Poluprovodnici",
+      "group": "themes",
+      "benchmark": "QQQ",
+      "alternatives": [
+        "SPY",
+        "SOXX"
+      ],
+      "overlap": [
+        "SOXX"
+      ]
+    },
+    "SOXX": {
+      "name": "Poluprovodnici",
+      "group": "themes",
+      "benchmark": "QQQ",
+      "alternatives": [
+        "SPY",
+        "SMH"
+      ],
+      "overlap": [
+        "SMH"
+      ]
+    },
+    "IGV": {
+      "name": "Softver",
+      "group": "themes",
+      "benchmark": "QQQ",
+      "alternatives": [
+        "SPY",
+        "SKYY",
+        "WCLD"
+      ],
+      "overlap": [
+        "SKYY",
+        "WCLD"
+      ]
+    },
+    "XBI": {
+      "name": "Biotehnologija – širi pristup",
+      "group": "themes",
+      "benchmark": "XLV",
+      "alternatives": [
+        "IBB",
+        "SPY"
+      ],
+      "overlap": [
+        "IBB"
+      ]
+    },
+    "IBB": {
+      "name": "Biotehnologija – velike kompanije",
+      "group": "themes",
+      "benchmark": "XLV",
+      "alternatives": [
+        "XBI",
+        "SPY"
+      ],
+      "overlap": [
+        "XBI"
+      ]
+    },
+    "XPH": {
+      "name": "Farmacija",
+      "group": "themes",
+      "benchmark": "XLV",
+      "alternatives": [
+        "SPY"
+      ]
+    },
+    "CIBR": {
+      "name": "Sajber bezbednost",
+      "group": "themes",
+      "benchmark": "QQQ",
+      "alternatives": [
+        "SPY"
+      ]
+    },
+    "BOTZ": {
+      "name": "Robotika i veštačka inteligencija",
+      "group": "themes",
+      "benchmark": "SPY",
+      "alternatives": [
+        "QQQ",
+        "ROBO"
+      ],
+      "overlap": [
+        "ROBO"
+      ]
+    },
+    "ROBO": {
+      "name": "Robotika i automatizacija",
+      "group": "themes",
+      "benchmark": "SPY",
+      "alternatives": [
+        "QQQ",
+        "BOTZ"
+      ],
+      "overlap": [
+        "BOTZ"
+      ]
+    },
+    "ITA": {
+      "name": "Odbrana i vazduhoplovstvo",
+      "group": "themes",
+      "benchmark": "XLI",
+      "alternatives": [
+        "SPY"
+      ]
+    },
+    "PAVE": {
+      "name": "Infrastruktura",
+      "group": "themes",
+      "benchmark": "XLI",
+      "alternatives": [
+        "SPY"
+      ]
+    },
+    "ICLN": {
+      "name": "Čista energija",
+      "group": "themes",
+      "benchmark": "SPY",
+      "alternatives": [
+        "XLE"
+      ]
+    },
+    "SKYY": {
+      "name": "Cloud computing",
+      "group": "themes",
+      "benchmark": "QQQ",
+      "alternatives": [
+        "IGV",
+        "WCLD",
+        "SPY"
+      ],
+      "overlap": [
+        "IGV",
+        "WCLD"
+      ]
+    },
+    "WCLD": {
+      "name": "Cloud softver",
+      "group": "themes",
+      "benchmark": "QQQ",
+      "alternatives": [
+        "IGV",
+        "SKYY",
+        "SPY"
+      ],
+      "overlap": [
+        "IGV",
+        "SKYY"
+      ]
+    },
+    "XOP": {
+      "name": "Istraživanje i proizvodnja nafte i gasa",
+      "group": "themes",
+      "benchmark": "XLE",
+      "alternatives": [
+        "SPY"
+      ]
+    },
+    "TLT": {
+      "name": "Dugoročne državne obveznice",
+      "group": "bonds",
+      "benchmark": "AGG",
+      "alternatives": [
+        "IEF",
+        "SHY",
+        "BIL"
+      ]
+    },
+    "IEF": {
+      "name": "Srednjoročne državne obveznice",
+      "group": "bonds",
+      "benchmark": "AGG",
+      "alternatives": [
+        "TLT",
+        "SHY",
+        "BIL"
+      ]
+    },
+    "SHY": {
+      "name": "Kratkoročne državne obveznice",
+      "group": "bonds",
+      "benchmark": "AGG",
+      "alternatives": [
+        "BIL",
+        "IEF"
+      ]
+    },
+    "LQD": {
+      "name": "Korporativne obveznice – investicioni rejting",
+      "group": "bonds",
+      "benchmark": "AGG",
+      "alternatives": [
+        "HYG"
+      ]
+    },
+    "HYG": {
+      "name": "Korporativne obveznice – visok prinos",
+      "group": "bonds",
+      "benchmark": "LQD",
+      "alternatives": [
+        "AGG"
+      ]
+    },
+    "TIP": {
+      "name": "Inflaciono zaštićene državne obveznice",
+      "group": "bonds",
+      "benchmark": "AGG",
+      "alternatives": [
+        "BIL"
+      ]
+    },
+    "GLD": {
+      "name": "Zlato",
+      "group": "commodities",
+      "benchmark": "SPY",
+      "alternatives": [
+        "AGG",
+        "DBC"
+      ]
+    },
+    "DBC": {
+      "name": "Šira robna tržišta",
+      "group": "commodities",
+      "benchmark": "SPY",
+      "alternatives": [
+        "AGG",
+        "GLD"
+      ]
+    },
+    "UUP": {
+      "name": "Američki dolar",
+      "group": "currency",
+      "benchmark": "SPY",
+      "alternatives": [
+        "GLD",
+        "DBC"
+      ]
+    },
+    "GDX": {
+      "name": "Rudarske kompanije za zlato",
+      "group": "miners",
+      "benchmark": "GLD",
+      "alternatives": [
+        "SPY"
+      ]
+    }
   }
- ],
- "tickers": {
-  "AGG": {
-   "name": "Obveznice ukupno",
-   "type": "ETF",
-   "group": "bonds"
-  },
-  "AVUV": {
-   "name": "SmallValue",
-   "type": "ETF",
-   "group": "factor"
-  },
-  "BIL": {
-   "name": "Keš (T-bill)",
-   "type": "ETF",
-   "group": "cash/safety"
-  },
-  "BOTZ": {
-   "name": "Robotika",
-   "type": "ETF",
-   "group": "technology"
-  },
-  "CIBR": {
-   "name": "Cyber",
-   "type": "ETF",
-   "group": "technology"
-  },
-  "DBC": {
-   "name": "Sirovine",
-   "type": "ETF",
-   "group": "commodities"
-  },
-  "EEM": {
-   "name": "Emerging",
-   "type": "ETF",
-   "group": "world"
-  },
-  "EFA": {
-   "name": "Razvijeni",
-   "type": "ETF",
-   "group": "world"
-  },
-  "EWG": {
-   "name": "Nemačka",
-   "type": "ETF",
-   "group": "world"
-  },
-  "EWJ": {
-   "name": "Japan",
-   "type": "ETF",
-   "group": "world"
-  },
-  "EWZ": {
-   "name": "Brazil",
-   "type": "ETF",
-   "group": "world"
-  },
-  "FXI": {
-   "name": "Kina",
-   "type": "ETF",
-   "group": "world"
-  },
-  "GDX": {
-   "name": "Rudnici zlata",
-   "type": "ETF",
-   "group": "gold miners"
-  },
-  "GLD": {
-   "name": "Zlato",
-   "type": "ETF",
-   "group": "real assets"
-  },
-  "HYG": {
-   "name": "HighYield",
-   "type": "ETF",
-   "group": "credit"
-  },
-  "IBB": {
-   "name": "Biotech big",
-   "type": "ETF",
-   "group": "health/biotech"
-  },
-  "ICLN": {
-   "name": "Čista energija",
-   "type": "ETF",
-   "group": "energy"
-  },
-  "IEF": {
-   "name": "Srednje obveznice",
-   "type": "ETF",
-   "group": "bonds"
-  },
-  "IEMG": {
-   "name": "EM široki",
-   "type": "ETF",
-   "group": "world"
-  },
-  "IGV": {
-   "name": "Softver",
-   "type": "ETF",
-   "group": "technology"
-  },
-  "INDA": {
-   "name": "Indija",
-   "type": "ETF",
-   "group": "world"
-  },
-  "ITA": {
-   "name": "Odbrana",
-   "type": "ETF",
-   "group": "industrials"
-  },
-  "IWM": {
-   "name": "SmallCap",
-   "type": "ETF",
-   "group": "style"
-  },
-  "LQD": {
-   "name": "Corp IG",
-   "type": "ETF",
-   "group": "credit"
-  },
-  "MTUM": {
-   "name": "Momentum",
-   "type": "ETF",
-   "group": "factor"
-  },
-  "PAVE": {
-   "name": "Infrastruktura",
-   "type": "ETF",
-   "group": "industrials"
-  },
-  "QQQ": {
-   "name": "Nasdaq100",
-   "type": "ETF",
-   "group": "benchmark"
-  },
-  "QUAL": {
-   "name": "Kvalitet",
-   "type": "ETF",
-   "group": "factor"
-  },
-  "ROBO": {
-   "name": "Robotika2",
-   "type": "ETF",
-   "group": "technology"
-  },
-  "RSP": {
-   "name": "S&P500 equal",
-   "type": "ETF",
-   "group": "benchmark"
-  },
-  "SCHD": {
-   "name": "Dividende",
-   "type": "ETF",
-   "group": "style"
-  },
-  "SHY": {
-   "name": "Kratke obveznice",
-   "type": "ETF",
-   "group": "bonds"
-  },
-  "SKYY": {
-   "name": "Cloud",
-   "type": "ETF",
-   "group": "technology"
-  },
-  "SMH": {
-   "name": "Čipovi",
-   "type": "ETF",
-   "group": "technology"
-  },
-  "SOXX": {
-   "name": "Čipovi2",
-   "type": "ETF",
-   "group": "technology"
-  },
-  "SPY": {
-   "name": "S&P500",
-   "type": "ETF",
-   "group": "benchmark"
-  },
-  "TIP": {
-   "name": "Inflacijske",
-   "type": "ETF",
-   "group": "inflation"
-  },
-  "TLT": {
-   "name": "Duge obveznice",
-   "type": "ETF",
-   "group": "bonds"
-  },
-  "USMV": {
-   "name": "MinVol",
-   "type": "ETF",
-   "group": "factor"
-  },
-  "UUP": {
-   "name": "Dolar",
-   "type": "ETF",
-   "group": "currency"
-  },
-  "VBR": {
-   "name": "SmallValue2",
-   "type": "ETF",
-   "group": "factor"
-  },
-  "VT": {
-   "name": "Svet ukupno",
-   "type": "ETF",
-   "group": "benchmark"
-  },
-  "VTV": {
-   "name": "Value",
-   "type": "ETF",
-   "group": "style"
-  },
-  "VUG": {
-   "name": "Growth",
-   "type": "ETF",
-   "group": "style"
-  },
-  "WCLD": {
-   "name": "Cloud2",
-   "type": "ETF",
-   "group": "technology"
-  },
-  "XBI": {
-   "name": "Biotech eq",
-   "type": "ETF",
-   "group": "health/biotech"
-  },
-  "XLB": {
-   "name": "Materijali",
-   "type": "ETF",
-   "group": "sector"
-  },
-  "XLC": {
-   "name": "Komunikacije",
-   "type": "ETF",
-   "group": "sector"
-  },
-  "XLE": {
-   "name": "Energetika",
-   "type": "ETF",
-   "group": "sector"
-  },
-  "XLF": {
-   "name": "Finansije",
-   "type": "ETF",
-   "group": "sector"
-  },
-  "XLI": {
-   "name": "Industrija",
-   "type": "ETF",
-   "group": "sector"
-  },
-  "XLK": {
-   "name": "Tehnologija",
-   "type": "ETF",
-   "group": "sector"
-  },
-  "XLP": {
-   "name": "Osnovna potrošnja",
-   "type": "ETF",
-   "group": "sector"
-  },
-  "XLRE": {
-   "name": "Nekretnine",
-   "type": "ETF",
-   "group": "sector"
-  },
-  "XLU": {
-   "name": "Komunalije",
-   "type": "ETF",
-   "group": "sector"
-  },
-  "XLV": {
-   "name": "Zdravstvo",
-   "type": "ETF",
-   "group": "sector"
-  },
-  "XLY": {
-   "name": "Luksuz",
-   "type": "ETF",
-   "group": "sector"
-  },
-  "XOP": {
-   "name": "Bušači",
-   "type": "ETF",
-   "group": "energy"
-  },
-  "XPH": {
-   "name": "Pharma",
-   "type": "ETF",
-   "group": "health/pharma"
-  }
- }
 }
