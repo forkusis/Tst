@@ -13,6 +13,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.js
+          node --check core.js
+          node --check fetch.mjs
       - name: Test analytical core
         run: node test-core.cjs
       - name: Validate catalogue and data
