@@ -6,7 +6,7 @@
  * Upotreba:
  *   node fetch.mjs                     # podrazumevano: 5 godina, history.json
  *   node fetch.mjs --range 5y --out /tmp/h.json
- *   node scripts/fetch.mjs --only SPY,XLE
+ *   node fetch.mjs --only SPY,XLE
  *
  * Bez ijedne spoljne biblioteke. Radi na Node 18+ (globalni fetch).
  * Ako jedan ticker padne, ostali se i dalje preuzimaju; na kraju se ispiše lista padova.
