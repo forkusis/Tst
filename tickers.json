@@ -1,0 +1,389 @@
+{
+ "rooms": [
+  {
+   "id": "sectors",
+   "name": "US Sektori",
+   "bench": "SPY",
+   "list": [
+    "XLE",
+    "XLB",
+    "XLI",
+    "XLY",
+    "XLP",
+    "XLV",
+    "XLF",
+    "XLK",
+    "XLC",
+    "XLU",
+    "XLRE"
+   ]
+  },
+  {
+   "id": "style",
+   "name": "Stil/Faktori",
+   "bench": "RSP",
+   "list": [
+    "MTUM",
+    "QUAL",
+    "USMV",
+    "AVUV",
+    "VBR",
+    "IWM",
+    "VUG",
+    "VTV",
+    "SCHD"
+   ]
+  },
+  {
+   "id": "safety",
+   "name": "Sigurnost+Realna",
+   "bench": "BIL",
+   "list": [
+    "TLT",
+    "IEF",
+    "SHY",
+    "LQD",
+    "HYG",
+    "TIP",
+    "GLD",
+    "DBC",
+    "UUP",
+    "GDX"
+   ]
+  },
+  {
+   "id": "world",
+   "name": "Svet",
+   "bench": "VT",
+   "list": [
+    "EFA",
+    "EEM",
+    "FXI",
+    "EWJ",
+    "INDA",
+    "EWZ",
+    "EWG",
+    "IEMG"
+   ]
+  },
+  {
+   "id": "tech",
+   "name": "Sateliti",
+   "bench": "QQQ",
+   "list": [
+    "SMH",
+    "SOXX",
+    "IGV",
+    "XBI",
+    "IBB",
+    "XPH",
+    "CIBR",
+    "BOTZ",
+    "ROBO",
+    "ITA",
+    "PAVE",
+    "ICLN",
+    "SKYY",
+    "WCLD",
+    "XOP"
+   ]
+  }
+ ],
+ "tickers": {
+  "AGG": {
+   "name": "Obveznice ukupno",
+   "type": "ETF",
+   "group": "bonds"
+  },
+  "AVUV": {
+   "name": "SmallValue",
+   "type": "ETF",
+   "group": "factor"
+  },
+  "BIL": {
+   "name": "Keš (T-bill)",
+   "type": "ETF",
+   "group": "cash/safety"
+  },
+  "BOTZ": {
+   "name": "Robotika",
+   "type": "ETF",
+   "group": "technology"
+  },
+  "CIBR": {
+   "name": "Cyber",
+   "type": "ETF",
+   "group": "technology"
+  },
+  "DBC": {
+   "name": "Sirovine",
+   "type": "ETF",
+   "group": "commodities"
+  },
+  "EEM": {
+   "name": "Emerging",
+   "type": "ETF",
+   "group": "world"
+  },
+  "EFA": {
+   "name": "Razvijeni",
+   "type": "ETF",
+   "group": "world"
+  },
+  "EWG": {
+   "name": "Nemačka",
+   "type": "ETF",
+   "group": "world"
+  },
+  "EWJ": {
+   "name": "Japan",
+   "type": "ETF",
+   "group": "world"
+  },
+  "EWZ": {
+   "name": "Brazil",
+   "type": "ETF",
+   "group": "world"
+  },
+  "FXI": {
+   "name": "Kina",
+   "type": "ETF",
+   "group": "world"
+  },
+  "GDX": {
+   "name": "Rudnici zlata",
+   "type": "ETF",
+   "group": "gold miners"
+  },
+  "GLD": {
+   "name": "Zlato",
+   "type": "ETF",
+   "group": "real assets"
+  },
+  "HYG": {
+   "name": "HighYield",
+   "type": "ETF",
+   "group": "credit"
+  },
+  "IBB": {
+   "name": "Biotech big",
+   "type": "ETF",
+   "group": "health/biotech"
+  },
+  "ICLN": {
+   "name": "Čista energija",
+   "type": "ETF",
+   "group": "energy"
+  },
+  "IEF": {
+   "name": "Srednje obveznice",
+   "type": "ETF",
+   "group": "bonds"
+  },
+  "IEMG": {
+   "name": "EM široki",
+   "type": "ETF",
+   "group": "world"
+  },
+  "IGV": {
+   "name": "Softver",
+   "type": "ETF",
+   "group": "technology"
+  },
+  "INDA": {
+   "name": "Indija",
+   "type": "ETF",
+   "group": "world"
+  },
+  "ITA": {
+   "name": "Odbrana",
+   "type": "ETF",
+   "group": "industrials"
+  },
+  "IWM": {
+   "name": "SmallCap",
+   "type": "ETF",
+   "group": "style"
+  },
+  "LQD": {
+   "name": "Corp IG",
+   "type": "ETF",
+   "group": "credit"
+  },
+  "MTUM": {
+   "name": "Momentum",
+   "type": "ETF",
+   "group": "factor"
+  },
+  "PAVE": {
+   "name": "Infrastruktura",
+   "type": "ETF",
+   "group": "industrials"
+  },
+  "QQQ": {
+   "name": "Nasdaq100",
+   "type": "ETF",
+   "group": "benchmark"
+  },
+  "QUAL": {
+   "name": "Kvalitet",
+   "type": "ETF",
+   "group": "factor"
+  },
+  "ROBO": {
+   "name": "Robotika2",
+   "type": "ETF",
+   "group": "technology"
+  },
+  "RSP": {
+   "name": "S&P500 equal",
+   "type": "ETF",
+   "group": "benchmark"
+  },
+  "SCHD": {
+   "name": "Dividende",
+   "type": "ETF",
+   "group": "style"
+  },
+  "SHY": {
+   "name": "Kratke obveznice",
+   "type": "ETF",
+   "group": "bonds"
+  },
+  "SKYY": {
+   "name": "Cloud",
+   "type": "ETF",
+   "group": "technology"
+  },
+  "SMH": {
+   "name": "Čipovi",
+   "type": "ETF",
+   "group": "technology"
+  },
+  "SOXX": {
+   "name": "Čipovi2",
+   "type": "ETF",
+   "group": "technology"
+  },
+  "SPY": {
+   "name": "S&P500",
+   "type": "ETF",
+   "group": "benchmark"
+  },
+  "TIP": {
+   "name": "Inflacijske",
+   "type": "ETF",
+   "group": "inflation"
+  },
+  "TLT": {
+   "name": "Duge obveznice",
+   "type": "ETF",
+   "group": "bonds"
+  },
+  "USMV": {
+   "name": "MinVol",
+   "type": "ETF",
+   "group": "factor"
+  },
+  "UUP": {
+   "name": "Dolar",
+   "type": "ETF",
+   "group": "currency"
+  },
+  "VBR": {
+   "name": "SmallValue2",
+   "type": "ETF",
+   "group": "factor"
+  },
+  "VT": {
+   "name": "Svet ukupno",
+   "type": "ETF",
+   "group": "benchmark"
+  },
+  "VTV": {
+   "name": "Value",
+   "type": "ETF",
+   "group": "style"
+  },
+  "VUG": {
+   "name": "Growth",
+   "type": "ETF",
+   "group": "style"
+  },
+  "WCLD": {
+   "name": "Cloud2",
+   "type": "ETF",
+   "group": "technology"
+  },
+  "XBI": {
+   "name": "Biotech eq",
+   "type": "ETF",
+   "group": "health/biotech"
+  },
+  "XLB": {
+   "name": "Materijali",
+   "type": "ETF",
+   "group": "sector"
+  },
+  "XLC": {
+   "name": "Komunikacije",
+   "type": "ETF",
+   "group": "sector"
+  },
+  "XLE": {
+   "name": "Energetika",
+   "type": "ETF",
+   "group": "sector"
+  },
+  "XLF": {
+   "name": "Finansije",
+   "type": "ETF",
+   "group": "sector"
+  },
+  "XLI": {
+   "name": "Industrija",
+   "type": "ETF",
+   "group": "sector"
+  },
+  "XLK": {
+   "name": "Tehnologija",
+   "type": "ETF",
+   "group": "sector"
+  },
+  "XLP": {
+   "name": "Osnovna potrošnja",
+   "type": "ETF",
+   "group": "sector"
+  },
+  "XLRE": {
+   "name": "Nekretnine",
+   "type": "ETF",
+   "group": "sector"
+  },
+  "XLU": {
+   "name": "Komunalije",
+   "type": "ETF",
+   "group": "sector"
+  },
+  "XLV": {
+   "name": "Zdravstvo",
+   "type": "ETF",
+   "group": "sector"
+  },
+  "XLY": {
+   "name": "Luksuz",
+   "type": "ETF",
+   "group": "sector"
+  },
+  "XOP": {
+   "name": "Bušači",
+   "type": "ETF",
+   "group": "energy"
+  },
+  "XPH": {
+   "name": "Pharma",
+   "type": "ETF",
+   "group": "health/pharma"
+  }
+ }
+}
