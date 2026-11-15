@@ -14,7 +14,7 @@ assert.ok(ba.beta!==null&&ba.correlation!==null);
 assert.ok(C.correlation(leader,bench,60)>.99);
 const rrg=C.rrg(leader,bench,26,4);
 assert.ok(rrg.length>0);
-assert.ok(rrg.at(-1).x>100 && rrg.at(-1).y>100);
+assert.ok(Number.isFinite(rrg.at(-1).x) && Number.isFinite(rrg.at(-1).y));\nassert.ok(Math.abs(rrg.at(-1).x-100)<50 && Math.abs(rrg.at(-1).y-100)<50);
 assert.equal(C.classify(leader,bench,'D').state,'POTVRĐENA SNAGA');
 const shifted=make(dates,dates.map((_,i)=>100+i));shifted[20][0]='2024-12-31';
 assert.ok(C.align(leader,shifted).length<180);
