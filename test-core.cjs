@@ -12,7 +12,7 @@ assert.ok(C.mansfield(leader,bench,60)>0);
 const ba=C.betaAlpha(leader,bench,60,252);
 assert.ok(ba.beta!==null&&ba.correlation!==null);
 assert.ok(C.correlation(leader,bench,60)>.99);
-assert.ok(C.rrg(leader,bench,26,4).length>0);
+const rrg=C.rrg(leader,bench,26,4);\nassert.ok(rrg.length>0);\nassert.ok(rrg.at(-1).x>100 && rrg.at(-1).y>100);
 assert.equal(C.classify(leader,bench,'D').state,'POTVRĐENA SNAGA');
 const shifted=make(dates,dates.map((_,i)=>100+i));shifted[20][0]='2024-12-31';
 assert.ok(C.align(leader,shifted).length<180);
