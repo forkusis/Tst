@@ -1,39 +1,29 @@
 #!/usr/bin/env node
 /**
- * Pravi JEDAN samostalan HTML fajl: aplikacija + sveži podaci unutra.
- * Radi bez servera i bez interneta — otvoriš fajl i sve je tu.
- *
- *   node scripts/build-standalone.mjs
- *   → dist/rotacija-<datum>.html
+ * Builds a self-contained HTML shell with embedded catalog and historical data.
+ * Chart.js remains loaded from its CDN for charts.
+ * Usage: node build-standalone.mjs
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const html = await fs.readFile(path.join(ROOT, 'app', 'index.html'), 'utf8');
-const data = JSON.parse(await fs.readFile(path.join(ROOT, 'app', 'history.json'), 'utf8'));
-
-const stamp = (data.meta?.latestD || new Date().toISOString().slice(0, 10)).replace(/-/g, '');
-const outDir = path.join(ROOT, 'dist');
-const outFile = path.join(outDir, `rotacija-${stamp}.html`);
-
-const marker = "<script>\n'use strict';";
-if (!html.includes(marker)) throw new Error('ne nalazim glavnu skriptu u app/index.html');
-
-const injected =
-  '<script>window.EMB_H=' +
-  JSON.stringify(data) +
-  ';</script>\n' +
-  marker;
-
-let out = html.replace(marker, injected);
-out = out.replace(
-  '<div class="sub" id="metaLine">DATA: čekam history.json</div>',
-  '<div class="sub" id="metaLine">DATA: ugrađeno</div>'
-);
-
-await fs.mkdir(outDir, { recursive: true });
-await fs.writeFile(outFile, out);
-const mb = (Buffer.byteLength(out) / 1048576).toFixed(2);
-console.log(`${outFile}  ${mb} MB  (podaci do ${data.meta?.latestD})`);
+const ROOT=path.dirname(fileURLToPath(import.meta.url));
+const [html,css,core,app,catalogText,historyText]=await Promise.all([
+  fs.readFile(path.join(ROOT,'index.html'),'utf8'),
+  fs.readFile(path.join(ROOT,'styles.css'),'utf8'),
+  fs.readFile(path.join(ROOT,'core.js'),'utf8'),
+  fs.readFile(path.join(ROOT,'app.js'),'utf8'),
+  fs.readFile(path.join(ROOT,'tickers.json'),'utf8'),
+  fs.readFile(path.join(ROOT,'history.json'),'utf8')
+]);
+const catalog=JSON.parse(catalogText),history=JSON.parse(historyText);
+let out=html.replace('<link rel="stylesheet" href="./styles.css">','<style>\n'+css+'\n</style>');
+const marker='<script src="./core.js"></script><script src="./app.js"></script>';
+const embedded='<script>window.EMB_CATALOG='+JSON.stringify(catalog)+';window.EMB_HISTORY='+JSON.stringify(history)+'</script>\n<script>\n'+core+'\n</script>\n<script>\n'+app+'\n</script>';
+if(!out.includes(marker))throw new Error('Application script insertion point not found');
+out=out.replace(marker,embedded);
+const stamp=(history.meta?.latestD||new Date().toISOString().slice(0,10)).replace(/-/g,'');
+const dir=path.join(ROOT,'dist');await fs.mkdir(dir,{recursive:true});
+const file=path.join(dir,'rotation-intelligence-'+stamp+'.html');
+await fs.writeFile(file,out);
+console.log(file+' · '+(Buffer.byteLength(out)/1048576).toFixed(2)+' MB · data through '+(history.meta?.latestD||'unknown'));
